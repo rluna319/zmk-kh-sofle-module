@@ -18,7 +18,7 @@
 &sensors {
 	status = "okay";
 	sensors = <&left_encoder>
-}
+};
 
 &pro_micro_i2c {
 	status = "okay";
