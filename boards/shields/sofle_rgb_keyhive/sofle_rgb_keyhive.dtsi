@@ -61,7 +61,7 @@
         status = "disabled";
     };
 
-    sensors {
+    sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <20>;
@@ -84,7 +84,7 @@
         segment-remap;
         com-invdir;
         com-sequential;
-        inversion-on;
+        // inversion-on;
         prechargep = <0x22>;
     };
 };
