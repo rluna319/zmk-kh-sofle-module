@@ -1,0 +1,17 @@
+if SHIELD_SOFLE_RGB_KEYHIVE_LEFT
+
+# Name must be less than 16 characters long!
+config ZMK_KEYBOARD_NAME
+    default "KH Sofle RGB"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_SOFLE_RGB_KEYHIVE_LEFT || SHIELD_SOFLE_RGB_KEYHIVE_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif
