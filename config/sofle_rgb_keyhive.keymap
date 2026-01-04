@@ -10,7 +10,6 @@
     behaviors {
         minpipe: minus_pipe {
             compatible = "zmk,behavior-mod-morph";
-            label = "MINUS_PIPE";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp PIPE>;
             mods = <(MOD_LALT)>;
@@ -19,13 +18,13 @@
         lr_encoder: lr_encoder {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            binding = <&kp RIGHT>, <&kp LEFT>;
+            bindings = <&kp RIGHT>, <&kp LEFT>;
         };
 
         ud_encoder: ud_encoder {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            binding = <&kp UP>, <&kp DOWN>;
+            bindings = <&kp UP>, <&kp DOWN>;
         };
     };
 };
