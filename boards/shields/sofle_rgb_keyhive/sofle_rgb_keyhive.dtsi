@@ -2,7 +2,6 @@
 
 / {
     chosen {
-        zephyr,display = &oled;
         zmk,physical-layout = &physical_layout0;
     };
 
