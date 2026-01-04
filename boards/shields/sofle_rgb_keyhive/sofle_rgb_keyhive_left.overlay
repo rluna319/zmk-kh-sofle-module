@@ -14,8 +14,3 @@
 &left_encoder {
 	status = "okay";
 };
-
-&sensors {
-	status = "okay";
-	sensors = <&left_encoder>;
-};

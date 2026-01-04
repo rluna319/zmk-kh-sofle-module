@@ -20,6 +20,5 @@
 };
 
 &sensors {
-	status = "okay";
-	sensors = <&right_encoder>;
+    triggers-per-rotation = <20>;
 };

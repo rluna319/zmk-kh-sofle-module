@@ -15,6 +15,18 @@
             bindings = <&kp MINUS>, <&kp PIPE>;
             mods = <(MOD_LALT)>;
         };
+
+        lr_encoder: lr_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            binding = <&kp RIGHT>, <&kp LEFT>;
+        };
+
+        ud_encoder: ud_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            binding = <&kp UP>, <&kp DOWN>;
+        };
     };
 };
 
@@ -44,7 +56,7 @@
 &kp LSHFT       &kp Z       &kp X           &kp C           &kp V           &kp B           &kp ENTER       &kp ENTER       &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &kp RSHFT
                             &mo LOWER       &none           &kp LALT        &kp LGUI        &kp ENTER       &kp SPACE       &mo RAISE       &kp RCTRL       &kp LBKT        &kp RBKT >;
 
-            sensor-bindings = <&inc_dec_kp RIGHT LEFT &inc_dec_kp DOWN UP>;
+            sensor-bindings = <&lr_encoder &ud_encoder>;
         };
 
 
@@ -69,7 +81,7 @@
 &trans    &none     &none      &none       &none     &none     &trans   &trans   &kp N1    &kp N2   &kp N3   &trans    &none     &trans
                     &kp LOWER  &trans      &trans    &trans    &trans   &trans   &trans    &kp N0   &trans   &trans >;
 
-            sensor-bindings = <&inc_dec_kp RIGHT LEFT &inc_dec_kp DOWN UP>;
+            sensor-bindings = <&lr_encoder &ud_encoder>;
         };
 
         raise_layer {
@@ -93,7 +105,7 @@
 &trans     &kp K_UNDO   &kp K_CUT    &kp K_COPY            &kp K_PASTE  &none   &trans   &trans  &none     &none             &none       &none            &kp BSLH    &trans
                         &trans       &kp LC(LA(DEL))       &trans       &trans  &trans   &trans  &trans    &trans            &trans      &trans >;
 
-            sensor-bindings = <&inc_dec_kp RIGHT LEFT &inc_dec_kp DOWN UP>;
+            sensor-bindings = <&lr_encoder &ud_encoder>;
         };
     };
 };
