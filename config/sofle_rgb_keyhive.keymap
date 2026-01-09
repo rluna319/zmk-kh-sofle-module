@@ -27,13 +27,13 @@
 
         lr_encoder: lr_encoder {
             compatible = "zmk,behavior-sensor-rotate";
-            #binding-cells = <0>;
+            #sensor-binding-cells = <0>;
             bindings = <&kp RIGHT>, <&kp LEFT>;
         };
 
         ud_encoder: ud_encoder {
             compatible = "zmk,behavior-sensor-rotate";
-            #binding-cells = <0>;
+            #sensor-binding-cells = <0>;
             bindings = <&kp UP>, <&kp DOWN>;
         };
     };
