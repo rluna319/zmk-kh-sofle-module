@@ -1,38 +1,58 @@
-/*
- * Copyright (c) 2022 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
- 
 #include <dt-bindings/led/led.h>
 
+/* Pin Control for nice!nano p0.06 (Pro Micro Pin 1) */
+&pinctrl {
+    spi1_default: spi1_default {
+        group1 {
+            /* 
+             * MOSI: P0.06 (The one connected to LEDs)
+             * SCK:  P0.05 (Dummy, required for SPI to start)
+             * MISO: P0.07 (Dummy)
+             */
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>,
+                    <NRF_PSEL(SPIM_SCK,  0, 5)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 7)>;
+        };
+    };
+
+    spi1_sleep: spi1_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>,
+                    <NRF_PSEL(SPIM_SCK,  0, 5)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 7)>;
+            low-power-enable;
+        };
+    };
+};;
+
+/* LED Strip via SPI1 */
 &spi1 {
-  compatible = "nordic,nrf-spim";
-  status = "okay";
-  mosi-pin = <6>;
-  // Unused pins, needed for SPI definition, but not used by the ws2812 driver itself.
-  sck-pin = <5>;
-  miso-pin = <7>;
+    compatible = "nordic,nrf-spim";
+    status = "okay";
 
-  led_strip: ws2812@0 {
-    compatible = "worldsemi,ws2812-spi";
-    label = "WS2812";
+    pinctrl-0 = <&spi1_default>;
+    pinctrl-1 = <&spi1_sleep>;
+    pinctrl-names = "default", "sleep";
 
-    /* SPI */
-    reg = <0>; /* ignored, but necessary for SPI bindings */
-    spi-max-frequency = <4000000>;
+    led_strip: ws2812@0 {
+        compatible = "worldsemi,ws2812-spi";
+        label = "WS2812";
 
-    /* WS2812 */
-    chain-length = <37>; /* number of LEDs */
-    spi-one-frame = <0x70>;
-    spi-zero-frame = <0x40>;
+        /* SPI */
+        reg = <0>; /* ignored but necessary for SPI bindings */
+        spi-max-frequency = <4000000>;
 
-    color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
-  };
+        /* WS2812 */
+        /* LED Order: https://github.com/keyhive/build_guides/blob/master/docs/images/sofle-rgb/LED_order%5B1%5D.png */
+        chain-length = <37>;    /* 37 Total LEDs per side (8 underglow + 29 per-key) */
+        spi-one-frame = <0x70>;
+        spi-zero-frame = <0x40>;
+        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
+    };
 };
 
 / {
-  chosen {
-    zmk,underglow = &led_strip;
-  };
+    chosen {
+        zmk,underglow = &led_strip;
+    };
 };
