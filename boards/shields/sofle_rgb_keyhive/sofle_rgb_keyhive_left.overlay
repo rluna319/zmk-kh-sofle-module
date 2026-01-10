@@ -14,3 +14,7 @@
 &left_encoder {
 	status = "okay";
 };
+
+&sensors {
+    triggers-per-rotation = <20>;
+};
