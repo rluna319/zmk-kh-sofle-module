@@ -23,7 +23,7 @@
             low-power-enable;
         };
     };
-};;
+};
 
 /* LED Strip via SPI1 */
 &spi1 {
