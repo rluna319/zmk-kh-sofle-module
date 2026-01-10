@@ -34,7 +34,7 @@
         ud_encoder: ud_encoder {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&kp UP>, <&kp DOWN>;
+            bindings = <&kp DOWN>, <&kp UP>;
         };
     };
 };
